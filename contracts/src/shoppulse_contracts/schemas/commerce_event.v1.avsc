@@ -1,0 +1,45 @@
+{
+  "type": "record",
+  "name": "CommerceEvent",
+  "namespace": "io.shoppulse.events.v1",
+  "doc": "One shopper behaviour event from any store, in the canonical ShopPulse shape. Fields that some stores do not have (e.g. OTTO has no price, category or brand) are nullable.",
+  "fields": [
+    {
+      "name": "event_id",
+      "type": "string",
+      "doc": "Deterministic SHA-256 hex of the store and the exact source fields. Exact source duplicates share an ID; consumers dedup on it."
+    },
+    {
+      "name": "store_id",
+      "type": "string",
+      "doc": "Which store the event belongs to, e.g. 'rees46'. Stores are never mixed."
+    },
+    {
+      "name": "event_time",
+      "type": { "type": "long", "logicalType": "timestamp-micros" },
+      "doc": "When the event happened (UTC), after the whole-week replay shift."
+    },
+    {
+      "name": "event_type",
+      "type": {
+        "type": "enum",
+        "name": "EventType",
+        "symbols": ["view", "cart", "remove_from_cart", "purchase", "unknown"],
+        "default": "unknown"
+      },
+      "doc": "Readers on an older schema map symbols they do not know to 'unknown'."
+    },
+    { "name": "product_id", "type": "long" },
+    { "name": "category_id", "type": ["null", "long"], "default": null },
+    { "name": "category_code", "type": ["null", "string"], "default": null },
+    { "name": "brand", "type": ["null", "string"], "default": null },
+    {
+      "name": "price",
+      "type": ["null", { "type": "bytes", "logicalType": "decimal", "precision": 12, "scale": 2 }],
+      "default": null,
+      "doc": "Unit price as an exact decimal. Null for stores without prices."
+    },
+    { "name": "user_id", "type": "long" },
+    { "name": "user_session", "type": ["null", "string"], "default": null }
+  ]
+}

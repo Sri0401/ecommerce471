@@ -1,0 +1,12 @@
+# Exercises failure-mode rows #2-#5 and #12. Same seed -> same faults on the same events.
+name = "chaos"
+seed = 42
+speed = 60.0
+duplicate_rate = 0.01      # 1% of events sent twice           -> silver dedup (#4)
+late_rate = 0.005          # 0.5% of events arrive late          -> watermark / late table (#5)
+late_delay_minutes = 90
+malformed_rate = 0.001     # 0.1% extra corrupt messages         -> DLQ (#3)
+
+[[outage]]                 # source silent for 20 min, then a burst -> lag / KEDA (#12)
+start = 2026-10-12T18:00:00Z
+duration_minutes = 20

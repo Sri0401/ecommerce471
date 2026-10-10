@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+
+# Data: raw downloads and local lake never go into git
+data/
+*.csv
+*.csv.gz
+*.parquet
+spark-warehouse/
+metastore_db/
+derby.log
+checkpoints/
+# ...except tiny hand-made fixtures used by tests
+!tests/fixtures/**
+
+# ML artefacts (tracked by MLflow, not git)
+mlruns/
+mlartifacts/
+
+# OpenTofu
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+crash.log
+
+# Secrets (should never exist locally, but just in case)
+.env
+*.pem
+kaggle.json
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

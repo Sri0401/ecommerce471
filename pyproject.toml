@@ -1,0 +1,57 @@
+[project]
+name = "shoppulse"
+version = "0.1.0"
+description = "Multi-store e-commerce data and ML platform (streaming + batch)"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+# Each service / pipeline is a uv workspace member with its own dependencies.
+# Install everything with `uv sync --all-packages`.
+[tool.uv.workspace]
+members = ["contracts", "pipelines/spark", "services/replay"]
+
+[dependency-groups]
+dev = [
+    "ruff",
+    "mypy",
+    "pytest",
+    "pre-commit",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["contracts/src", "pipelines/spark/src", "services/replay/src"]  # first-party, for import sorting
+
+[tool.ruff.lint]
+select = [
+    "E", "W",   # pycodestyle
+    "F",        # pyflakes
+    "I",        # isort
+    "B",        # bugbear
+    "UP",       # pyupgrade
+    "SIM",      # simplify
+    "ANN",      # type annotations on public functions (rule 9)
+    "S",        # bandit security checks (rule 6: no secrets)
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "ANN"]   # asserts are the point of tests
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_unused_configs = true
+files = ["contracts/src", "pipelines/spark/src", "services/replay/src", "tests"]
+mypy_path = ["contracts/src", "pipelines/spark/src", "services/replay/src"]
+explicit_package_bases = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers -m 'not integration'"
+markers = ["integration: needs the Compose stream profile running (make up-stream)"]
+
+[[tool.mypy.overrides]]
+module = ["pyarrow.*", "fastavro.*"]  # no type stubs published
+ignore_missing_imports = true

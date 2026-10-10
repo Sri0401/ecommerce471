@@ -1,0 +1,13 @@
+event_time,event_type,product_id,category_id,category_code,brand,price,user_id,user_session
+2019-10-01 00:00:00 UTC,view,1001,2053013555631882655,electronics.smartphone,apple,489.07,501,s1
+2019-10-01 00:05:00 UTC,cart,1001,2053013555631882655,electronics.smartphone,apple,489.07,501,s1
+2019-10-01 00:05:00 UTC,cart,1001,2053013555631882655,electronics.smartphone,apple,489.07,501,s1
+2019-10-05 12:00:00 UTC,view,1002,2053013555631882655,,,12.50,502,s2
+2019-10-09 23:59:59 UTC,purchase,1001,2053013555631882655,electronics.smartphone,apple,489.07,501,s3
+2019-10-10 00:00:00 UTC,view,1003,2053013555631882655,,,5.00,503,s4
+2019-10-12 08:00:00 UTC,remove_from_cart,1001,2053013555631882655,electronics.smartphone,apple,489.07,501,
+2019/10/12 08:00,view,1001,2053013555631882655,electronics.smartphone,apple,1.00,501,s5
+2019-10-12 09:00:00 UTC,click,1001,2053013555631882655,electronics.smartphone,apple,1.00,501,s5
+2019-10-12 09:30:00 UTC,view,1001,2053013555631882655,electronics.smartphone,apple,-3.00,501,s5
+2019-10-12 09:45:00 UTC,view,1001,2053013555631882655,electronics.smartphone,apple,3.00,abc,s5
+2019-10-12 10:00:00 UTC,view,1001

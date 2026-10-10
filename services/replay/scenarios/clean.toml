@@ -1,0 +1,4 @@
+# No faults: the baseline every chaos run is compared against.
+name = "clean"
+seed = 1
+speed = 60.0          # 1 hour of event time per wall-clock minute

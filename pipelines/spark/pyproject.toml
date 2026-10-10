@@ -1,0 +1,12 @@
+[project]
+name = "shoppulse-spark"
+version = "0.1.0"
+description = "Spark jobs: data preparation, streaming and backfill (shared code)"
+requires-python = ">=3.11"
+dependencies = [
+    "pyspark>=4.0,<5",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

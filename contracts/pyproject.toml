@@ -1,0 +1,12 @@
+[project]
+name = "shoppulse-contracts"
+version = "0.1.0"
+description = "Canonical event contract (Avro) shared by producers and consumers"
+requires-python = ">=3.11"
+dependencies = [
+    "fastavro>=1.9",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

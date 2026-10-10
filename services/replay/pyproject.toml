@@ -1,0 +1,18 @@
+[project]
+name = "shoppulse-replay"
+version = "0.1.0"
+description = "Replays prepared store events in event-time order, with deterministic fault injection"
+requires-python = ">=3.11"
+dependencies = [
+    "confluent-kafka>=2.6",
+    "pyarrow>=15",
+    "shoppulse-contracts",
+    "tzdata; sys_platform == 'win32'",  # Windows has no IANA time zone db; pyarrow needs one
+]
+
+[tool.uv.sources]
+shoppulse-contracts = { workspace = true }
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
